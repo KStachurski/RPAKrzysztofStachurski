@@ -1,0 +1,573 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="CreateInvoice" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_dt_Faktury" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="in_PathToFakturaSample" Type="InArgument(x:String)" />
+    <x:Property Name="in_PathToOutputFolder" Type="InArgument(x:String)" />
+    <x:Property Name="in_PathToWordFolder" Type="InArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1894.0000000000002,9915</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>CreateInvoice_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.ExtractData</x:String>
+      <x:String>UiPath.DataTableUtilities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Word.Activities</x:String>
+      <x:String>UiPath.Word</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.SqlClient</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Private.Xml</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>UiPath.Word.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>UiPath.Word</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="CreateInvoice" sap:VirtualizedContainerService.HintSize="820,9850" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dt_Faktury]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="758,9739" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+      <ui:ForEachRow.Body>
+        <ActivityAction x:TypeArguments="sd:DataRow">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="724,9551" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="CompanyInfo" />
+              <Variable x:TypeArguments="x:String" Name="InvoiceNumber" />
+              <Variable x:TypeArguments="x:String" Name="DateOfIssue" />
+              <Variable x:TypeArguments="x:Int32" Name="NumberOfServices" />
+              <Variable x:TypeArguments="s:String[]" Name="NameOfServices" />
+              <Variable x:TypeArguments="s:String[]" Name="Quantity" />
+              <Variable x:TypeArguments="s:String[]" Name="NettoPriceOfServices" />
+              <Variable x:TypeArguments="s:String[]" Name="VATrate" />
+              <Variable x:TypeArguments="s:String[]" Name="NettoSumOfServices" />
+              <Variable x:TypeArguments="s:String[]" Name="VATSumOfServices" />
+              <Variable x:TypeArguments="s:String[]" Name="BruttoSumOfServices" />
+              <Variable x:TypeArguments="x:String" Name="TotalValueNetto" />
+              <Variable x:TypeArguments="x:String" Name="TotalValueVAT" />
+              <Variable x:TypeArguments="x:String" Name="TotalValueBrutto" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_15">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[CompanyInfo]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Nazwa, NIP, Adres Nabywcy").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_16">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[InvoiceNumber]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Numer Faktury").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_17">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[DateOfIssue]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Data wystawienia").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_18">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:Int32">[NumberOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:Int32">[CInt(CurrentRow("LP"))]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_19">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[NameOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Nazwy usług/towarów").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_20">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[Quantity]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Ilość").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_21">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[NettoPriceOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Cena netto każdej usługi").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_22">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[VATrate]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Stawka VAT każdej usługi").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_23">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[NettoSumOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Łączna kwota netto usługi (cena netto * ilość)").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_24">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[VATSumOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]" xml:space="preserve">[CurrentRow("Łączny VAT usługi  (cena netto * VAT) * ilość").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_25">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:String[]">[BruttoSumOfServices]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:String[]">[CurrentRow("Wartość brutto (Łączna kwota netto + łaczny VAT usługi)").ToString().Split(New String() {" ; "}, StringSplitOptions.None)]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_26">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[TotalValueNetto]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Razem wartość netto").ToString()]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_27">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[TotalValueVAT]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Razem wartość VAT").ToString()]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <Assign sap:VirtualizedContainerService.HintSize="682,83" sap2010:WorkflowViewState.IdRef="Assign_28">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[TotalValueBrutto]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[CurrentRow("Razem wartość brutto").ToString]</InArgument>
+              </Assign.Value>
+            </Assign>
+            <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Application: FakturaSample - Word" sap:VirtualizedContainerService.HintSize="682,7741" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="WindowMessages" OpenMode="Always" ScopeGuid="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V2" WindowResize="Maximize">
+              <uix:NApplicationCard.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="648,7448" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Int32" Name="Counter" />
+                      <Variable x:TypeArguments="x:Int32" Name="NumberOfRow" />
+                      <Variable x:TypeArguments="x:Int32" Name="CounterOfRows" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'winword.exe FakturaSamp…'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_1" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[CompanyInfo]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvElementArea="1346, 395, 414, 146" CvType="InputBox" DesignTimeRectangle="1347, 397, 412, 143" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' tableCol='2' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="c2e2a3ec-4bd5-4821-9253-ade9a8388e58" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAaAAAACTCAYAAADIr83uAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI/SURBVHhe7dexCcAwEATB779pGQxy5FTaZAauhuVmAUBAgABIvAGaGTMzsyvbvgABwGkCBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiAhQAAkBAiAhAABkBAgABICBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiAhQAAkBAiAhAABkBAgABICBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiAhQAAkBAiAhAABkBAgABICBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiAhQAAkBAiAhAABkBAgABICBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiAhQAAkBAiAhAABkBAgABICBEBCgABICBAACQECICFAACQECICEAAGQECAAEgIEQEKAAEgIEAAJAQIgIUAAJAQIgIQAAZAQIAASAgRAQoAASAgQAAkBAiDxGyAzM7Mb21wfABICBEBgrQeX7QyCyS+cdwAAAABJRU5ErkJggg==" InformativeScreenshot="866b954f9fb09a3af2e9ba7ae9cc79af.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, Image" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="1327, 365, 453, 187" FriendlyName="'winword.exe FakturaSamp…'" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAcUAAAC7CAYAAAAUnoWBAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAZySURBVHhe7dprlVNZFIVRLKABC3hAAhqwgAMc4AAFKMAABnCAB7oXvTZszkiqqrup9IM5xziD5L5vfuSrc8OTLwDAV6IIACWKAFCiCAAligBQoggAJYoAUKIIACWKAFCiCAAligBQoggA9WhRfPLkybfx/v37Lv3Rmzdvvm2T13/Hixcvvh3rw4cPXQoAD3eTKD59+vTL58+fu+Y7UQTg3+QmUcx4+fJl13wnigD8m9wsihlv377t2j/cF8XELTHNTHO2e/78+cVtzyhmm9nv2bNnP+yTx7mz7atXr7r0uyyb9R8/fvx6znm/Z7xZN8vPdZ8+ffq2/PXr1136h3fv3v1wvbm+nDP7nHLMXPu+htxXPpec/zT37g8DgD/v0aOYL/z9Zb6/+PPlPet2tGKH69I4Q7MjsyO6x95ntsm/p1mXa499nfv30UR+lmckdiOvZ/kO1A7uOXLeM3Q7hufI9vvz3CHOuBRNAK579CgmVjsq+ZIfd0VxYrBDkVnTjuyeme0oZiRYidGOU8ZEJIGcZTt02WeWzzXtGeEOa2Zrszxjzzonfju6+1pyfzlvzrdDuR8zX5vR7hjv69nXnrFjDMD9bhLF2NGa2NwVxWyfcc4Id8z2l/4+/vmYdu8z63bodnD2tnsWNjGe2WPMjHLOvdfN9vvY+xrPYO0Z4ZjHrBl71pc/BmbbrNsm1Fm+/2gA4H43i2ICMxHJSBTuimLkSz2zpazLyLH2TPFaFM/g5P2s25GdY+3Z3MRpz2hjz+ZyLzuq+/hZlzHv9yPVWZbxZ+RciXk+g1zHvtf5fAH4+24WxdiPDxOkPSs7o5j3O6KXxl+J4r6e/Rgy8d0xO2eb+1Fm7mP2ncede799n3u2NssyHiIx3Pd1aYgiwM9z0yjG/h1uR29HcUcsM7YduWw36x4axR20PVPcEcwMbMcs605727mPiee8z7/z+rz32T/jIfY95b4vBVYUAX6em0cxX+yXZoA7ijt8Cdq2Z5fXorgfWcbe55wBTsByTfP6fHQ6Zv1+hDu/9c3MMceZ+zvPta/xDPel3xTn/Xk9+Qxn3fn55rj5/M7jA3C/m0cx8oU962dci+L8R5WEYC/PuBbFRClByvqJ1YxzBrhnh9diNva2s/3YvzHOuOtcCV2CPxGb5fvzmmU5z8Q32++A7u33zDdj9gHgYf6RKMaevWXsKObLfQJ1jh2Ea1Hc2+yxz7Gd57r06DTO6Eywx55B5vUl2WcfY48dvzg/oxnXopjPY2+3Px8A7vePRTEzv/3lfgYrcdihy+tzVnUtijl24jOxy3nOR6rbDlW2vcu+5vOY+zj7t8tT9tvXm4Bm30sxzv3Ofcx/Trrr8en+PTPbAfBwjxbF/5Ids7viCcD/2y8bxcyizplnZmRmVwC/rl82iufvbxnXfnME4Ncgir+P/FYniAD4TREAShQBoH5qFPfvc4ZhGIbxmOMx/PQoAsBjE0UAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgBJFAChRBIASRQAoUQSAEkUAKFEEgPrPRNEwDMMwbjEeg6kdAJQoAkCJIgCUKAJAiSIAlCgCQIkiAJQoAkCJIgCUKAJAiSIAlCgCwFdfvvwG8qb4HhYSFVYAAAAASUVORK5CYII=" SearchSteps="Image" TargetType="ImageBased" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_2" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[InvoiceNumber]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvElementArea="1278, 483, 178, 34" CvType="InputBox" DesignTimeRectangle="1282, 562, 221, 40" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="&lt;uia idx='2' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="d412f28c-ed75-40fe-9acb-0c2dbec56f69" ImageBase64="" InformativeScreenshot="d09e374d4462cf555f2081dd93aa6c24.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_33" InteractionMode="HardwareEvents" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[&quot;Wystawiono dnia: &quot;+DateOfIssue+&quot;, Warszawa&quot;]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvElementArea="958, 321, 268, 36" CvType="InputBox" DesignTimeRectangle="961, 322, 263, 33" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="f6e2c34c-b65f-4282-8b65-344387ec63b9" InformativeScreenshot="a91030717e11c0e6d20100d9f1bf836c.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <Assign sap:VirtualizedContainerService.HintSize="586,83" sap2010:WorkflowViewState.IdRef="Assign_29">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[Counter]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">0</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[Counter &lt; NumberOfServices]" DisplayName="While" sap:VirtualizedContainerService.HintSize="586,3568" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_9">
+                      <ui:InterruptibleWhile.Body>
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="552,3431" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Int32" Default="8" Name="NumberOfColumns" />
+                            <Variable x:TypeArguments="x:Int32" Name="CounterOfColumns" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Nazwa towaru/usługi'" sap:VirtualizedContainerService.HintSize="510,158" sap2010:WorkflowViewState.IdRef="NClick_4" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Right" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable DesignTimeRectangle="839, 896, 206, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='1' tableRow='1' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="8cd5265e-a5ed-478d-a23e-eb0d4bee894e" InformativeScreenshot="8b3c8ec276ff4bdb7eb00baee2ba9f0b.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="FuzzySelector" Version="V2" Visibility="Interactive">
+                                <uix:TargetAnchorable.Anchors>
+                                  <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                    <uix:Target DesignTimeRectangle="839, 841, 206, 56" FriendlyName="'Nazwa towaru/usługi'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='1' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='Nazwa towaru/usługi' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                                  </scg:List>
+                                </uix:TargetAnchorable.Anchors>
+                              </uix:TargetAnchorable>
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Wstaw'" sap:VirtualizedContainerService.HintSize="510,158" sap2010:WorkflowViewState.IdRef="NClick_5" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable CvElementArea="203, 191, 15, 17" CvTextArea="37, 194, 38, 12" CvTextArgument="Wstaw" CvType="ArrowButton" DesignTimeRectangle="2, 187, 220, 28" DesignTimeScaleFactor="1" FriendlyName="'Wstaw'" FullSelectorArgument="&lt;wnd cls='NetUIHWND' /&gt;&lt;ctrl name='Wstaw' role='menu item' /&gt;" FuzzySelectorArgument="&lt;wnd cls='NetUIHWND' /&gt;&lt;ctrl name='Wstaw' role='menu item' automationid='' check:text='Wstaw' /&gt;" Guid="966d07c9-fe82-4120-a4f6-f06514cd190b" InformativeScreenshot="12630e9060f863bcf8ac3adbdcb8b9b5.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='Net UI Tool Window' idx='*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Wstaw wiersze poniżej'" sap:VirtualizedContainerService.HintSize="510,158" sap2010:WorkflowViewState.IdRef="NClick_6" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                            <uix:NClick.Target>
+                              <uix:TargetAnchorable CvTextArea="38, 93, 118, 15" CvTextArgument="Wstaw wiersze ponizej" CvType="Text" DesignTimeRectangle="2, 86, 191, 28" DesignTimeScaleFactor="1" FriendlyName="'Wstaw wiersze poniżej'" FullSelectorArgument="&lt;wnd cls='NetUIHWND' /&gt;&lt;ctrl name='Wstaw wiersze poniżej' role='menu item' /&gt;" FuzzySelectorArgument="&lt;wnd cls='NetUIHWND' /&gt;&lt;ctrl name='Wstaw wiersze poniżej' role='menu item' automationid='' check:text='Wstaw wiersze poniżej' /&gt;" Guid="aea9c6fb-116d-44ce-84d8-37459e6bf4f6" InformativeScreenshot="921b52a97d49e30e51fb0de5e4a33666.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='Net UI Tool Window' idx='*' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                            </uix:NClick.Target>
+                          </uix:NClick>
+                          <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_39">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[NumberOfRow]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[NumberOfServices]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_40">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[CounterOfRows]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">2</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:InterruptibleWhile CurrentIndex="{x:Null}" Condition="[CounterOfRows&lt;=NumberOfServices]" DisplayName="While" sap:VirtualizedContainerService.HintSize="510,2380" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_11">
+                            <ui:InterruptibleWhile.Body>
+                              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="476,2243" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_19" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[CounterOfRows.ToString]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="967, 687, 29, 37" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='4' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="f9317d48-b63b-4f4d-ae9a-2b6218d03080" ImageBase64="" InformativeScreenshot="53868ab87f98bdd76b9b3a0753ae1098.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_20" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[NameOfServices(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_21" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[Quantity(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_22" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[NettoPriceOfServices(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_23" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[VATrate(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_24" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[NettoSumOfServices(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_25" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[VATSumOfServices(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'LP'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="434,219" sap2010:WorkflowViewState.IdRef="NTypeInto_26" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[BruttoSumOfServices(Counter)]" Version="V3">
+                                  <uix:NTypeInto.Target>
+                                    <uix:TargetAnchorable DesignTimeRectangle="793, 656, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" InformativeScreenshot="19e59b5243498f17efcf442ec9bdb317.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive">
+                                      <uix:TargetAnchorable.Anchors>
+                                        <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                                          <uix:Target CvTextArea="803, 583, 26, 18" CvTextArgument="LP" CvType="Text" DesignTimeRectangle="793, 577, 46, 56" FriendlyName="'LP'" FullSelectorArgument="&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='0' tableRow='0' /&gt;" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' check:fulltext='LP' /&gt;" SearchSteps="Selector" />
+                                        </scg:List>
+                                      </uix:TargetAnchorable.Anchors>
+                                    </uix:TargetAnchorable>
+                                  </uix:NTypeInto.Target>
+                                </uix:NTypeInto>
+                                <Assign sap:VirtualizedContainerService.HintSize="434,83" sap2010:WorkflowViewState.IdRef="Assign_41">
+                                  <Assign.To>
+                                    <OutArgument x:TypeArguments="x:Int32">[CounterOfRows]</OutArgument>
+                                  </Assign.To>
+                                  <Assign.Value>
+                                    <InArgument x:TypeArguments="x:Int32">[CounterOfRows+1]</InArgument>
+                                  </Assign.Value>
+                                </Assign>
+                              </Sequence>
+                            </ui:InterruptibleWhile.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InterruptibleWhile>
+                          <Assign sap:VirtualizedContainerService.HintSize="510,83" sap2010:WorkflowViewState.IdRef="Assign_38">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:Int32">[Counter]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:Int32">[Counter+1]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ui:InterruptibleWhile.Body>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:InterruptibleWhile>
+                    <Assign sap:VirtualizedContainerService.HintSize="586,83" sap2010:WorkflowViewState.IdRef="Assign_42">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Int32">[CounterOfRows]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Int32">[CounterOfRows+1]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_27" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[TotalValueNetto]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="1355, 632, 134, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='5' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="d3faf20e-3bf4-4f99-a130-3f3af8d6c7c8" InformativeScreenshot="6fd29a479cadc6aff887c22b73edc887.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_28" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[TotalValueVat]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="793, 632, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='6' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" ImageBase64="" InformativeScreenshot="843a119734afda5f37480bd0aa6ee11d.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'element'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_29" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[TotalValueBrutto]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="793, 632, 46, 25" DesignTimeScaleFactor="1" FriendlyName="'element'" FullSelectorArgument="[string.Format(&quot;&lt;uia idx='3' role='tabela' /&gt;&lt;uia role='element' tableCol='7' tableRow='{0}' /&gt;&quot;, CounterOfRows)]" FuzzySelectorArgument="&lt;uia role='tabela' /&gt;&lt;uia role='element' automationid='' /&gt;" Guid="34896c05-32b3-4f1a-b676-97b35c33d0ab" ImageBase64="" InformativeScreenshot="b316daa0119a6343e383cf02e7db31d1.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Razem do zaplaty'" EmptyFieldMode="None" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_32" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[&quot; &quot;+TotalValueBrutto+&quot;PLN&quot;]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvTextArea="1582, 1057, 185, 22" CvTextArgument="Razem do zaplaty:" CvType="Text" DesignTimeRectangle="1582, 1057, 185, 22" DesignTimeScaleFactor="1" ElementType="Text" FriendlyName="'Razem do zaplaty'" Guid="576c96e1-cfb0-40ed-ad50-8659cc62c20d" InformativeScreenshot="9d1d52e24c600f00c91a04dcf589dc27.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="CV" TargetType="ComputerVisionBased" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Karta Plik'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_8" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvTextArea="29, 64, 21, 13" CvTextArgument="Plik" CvType="Text" DesignTimeRectangle="12, 56, 54, 30" DesignTimeScaleFactor="1" FriendlyName="'Karta Plik'" FullSelectorArgument="&lt;uia cls='MsoCommandBar' /&gt;&lt;uia automationid='FileTabButton' cls='NetUIRibbonTab' name='Karta Plik' /&gt;" FuzzySelectorArgument="&lt;uia cls='MsoCommandBar' /&gt;&lt;uia automationid='FileTabButton' cls='NetUIRibbonTab' name='Karta Plik' role='Przycisk' check:fulltext='Karta Plik' /&gt;" Guid="cb93e022-b6cb-4772-a52f-4914793a4e69" InformativeScreenshot="96d398f72b744ae9bafb6f67cc797726.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Eksportuj'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_9" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvTextArea="51, 451, 51, 15" CvTextArgument="Eksportuj" CvType="Text" DesignTimeRectangle="8, 437, 140, 40" DesignTimeScaleFactor="1" FriendlyName="'Eksportuj'" FullSelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='Plik' /&gt;&lt;uia cls='NetUIRibbonTab' name='Eksportuj' /&gt;" FuzzySelectorArgument="&lt;uia automationid='NavBarMenu' cls='NetUIKeyboardTabElement' name='Plik' /&gt;&lt;uia cls='NetUIRibbonTab' name='Eksportuj' role='Element listy' automationid='' check:fulltext='Eksportuj' /&gt;" Guid="7cc07ff8-6011-4d4a-bea6-d320e48c4f95" InformativeScreenshot="ad012b5d2e1bcecc83c5cd6a5639d6a8.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Układy, formatowanie,'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_10" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable DesignTimeRectangle="540, 230, 84, 86" DesignTimeScaleFactor="1" FriendlyName="'Utwórz plik PDF/XPS'" FullSelectorArgument="&lt;uia cls='NetUIElement' name='Eksportuj' /&gt;&lt;uia automationid='GroupCreatePdfOrXpsDocument' cls='NetUISlabContainer' name='Utwórz plik PDF lub XPS' /&gt;&lt;uia cls='NetUISimpleButton' name='Utwórz plik PDF/XPS' /&gt;" FuzzySelectorArgument="&lt;uia cls='NetUIElement' name='Eksportuj' /&gt;&lt;uia automationid='GroupCreatePdfOrXpsDocument' cls='NetUISlabContainer' name='Utwórz plik PDF lub XPS' /&gt;&lt;uia cls='NetUISimpleButton' name='Utwórz plik PDF/XPS' role='Przycisk' automationid='' check:fulltext='Utwórz plik PDF/XPS' /&gt;" Guid="719f42c3-3939-4e51-a837-e59b1a3b4706" InformativeScreenshot="dc7ada65b3963c0d11b25b641a802a69.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, FuzzySelector" Version="V2" Visibility="Interactive">
+                          <uix:TargetAnchorable.Anchors>
+                            <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                              <uix:Target DesignTimeRectangle="540, 141, 770, 67" FriendlyName="'Układy, formatowanie,'" FullSelectorArgument="&lt;uia cls='NetUIElement' name='Eksportuj' /&gt;&lt;uia automationid='GroupCreatePdfOrXpsDocumentSlab' cls='NetUISlabContainer' name='Utwórz dokument PDF/XPS' /&gt;&lt;uia cls='NetUIElement' name='Szczegółowe informacje' /&gt;" FuzzySelectorArgument="&lt;uia cls='NetUIElement' name='Eksportuj' /&gt;&lt;uia automationid='GroupCreatePdfOrXpsDocumentSlab' cls='NetUISlabContainer' name='Utwórz dokument PDF/XPS' /&gt;&lt;uia cls='NetUIElement' name='Szczegółowe informacje' role='Grupa' automationid='' check:fulltext='Układy, formatowanie, czcionki i obrazy są zachowywane&amp;#x9;Zawartości nie można łatwo zmodyfikować&amp;#x9;W' /&gt;" SearchSteps="Selector, FuzzySelector" />
+                            </scg:List>
+                          </uix:TargetAnchorable.Anchors>
+                        </uix:TargetAnchorable>
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Adres: https://d.docs.l…'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_30" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[in_PathToFakturaSample]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvTextArea="189, 51, 659, 15" CvTextArgument="Witryny internetowe https://d.docs.live.net f60281044f46fc4f Documents UiPath Pracalnzynierska Data" CvType="Text" DesignTimeRectangle="152, 41, 739, 34" DesignTimeScaleFactor="1" ElementType="Toolbar" FriendlyName="'Adres: https://d.docs.l…'" FullSelectorArgument="&lt;wnd aaname='Ładowanie' cls='msctls_progress32' /&gt;&lt;wnd ctrlid='1001' title='Adres: https://d.docs.live.net/f60281044f46fc4f/Documents/UiPath*' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Ładowanie' cls='msctls_progress32' /&gt;&lt;wnd ctrlid='1001' title='Adres: https://d.docs.live.net/f60281044f46fc4f/Documents/UiPath*' check:text='Adres: https://d.docs.live.net/f60281044f46fc4f/Documents/UiPath/PracaInżynierska/Data' /&gt;" Guid="49f5038f-fa61-4b3c-ad46-36a305299aca" InformativeScreenshot="6fa4296f694b73d40a67dd1980c370ff.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='#32770' title='Publikowanie jako pliku PDF lub XPS' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="None" DisplayName="Type Into 'Edit'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="586,219" sap2010:WorkflowViewState.IdRef="NTypeInto_31" InteractionMode="WindowMessages" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Text="[&quot;Faktura &quot;+DateOfIssue]" Version="V3">
+                      <uix:NTypeInto.Target>
+                        <uix:TargetAnchorable CvElementArea="127, 605, 1061, 25" CvType="InputBox" DesignTimeRectangle="136, 609, 1031, 17" DesignTimeScaleFactor="1" ElementType="InputBox" FriendlyName="'Edit'" FullSelectorArgument="&lt;wnd aaname='Okienko Eksploratora' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Nazwa pliku:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Okienko Eksploratora' cls='DirectUIHWND' /&gt;&lt;wnd aaname='Nazwa pliku:' cls='ComboBox' /&gt;&lt;wnd ctrlid='1001' /&gt;" Guid="45a5a449-00cf-404f-b8eb-8d4021a20ae1" InformativeScreenshot="993973723ed3ab782776becae4bfd66d.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='#32770' title='Publikowanie jako pliku PDF lub XPS' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NTypeInto.Target>
+                    </uix:NTypeInto>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'unchecked'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_11" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvElementArea="987, 781, 88, 26" CvTextArea="1008, 787, 45, 15" CvTextArgument="Publikuj" CvType="Button" DesignTimeRectangle="987, 781, 88, 26" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'unchecked'" FullSelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Publikuj' /&gt;" FuzzySelectorArgument="&lt;wnd ctrlid='1' title='&amp;amp;Publikuj' check:text='unchecked' /&gt;" Guid="77d44484-672f-4a94-b143-35f13542a1d3" InformativeScreenshot="423539bdcde0bfb8e2f27b0c3b61674d.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='#32770' title='Publikowanie jako pliku PDF lub XPS' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Zamknij'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvElementArea="2534, 22, 18, 18" CvType="CloseButton" DesignTimeRectangle="2520, 8, 48, 48" DesignTimeScaleFactor="1" FriendlyName="'Zamknij'" FullSelectorArgument="&lt;uia cls='MsoCommandBar' /&gt;&lt;uia cls='NetUIAppFrameHelper' name='Zamknij' /&gt;" FuzzySelectorArgument="&lt;uia cls='MsoCommandBar' /&gt;&lt;uia cls='NetUIAppFrameHelper' name='Zamknij' role='Przycisk' automationid='' check:fulltext='Zamknij' /&gt;" Guid="cffa051e-8f3d-4a35-832b-aa44f8d13881" InformativeScreenshot="0610b88dd11f898d94f644d656c6d1a4.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                    <uix:NClick ActivateBefore="True" ClickType="Single" DisplayName="Click 'Nie zapisuj'" sap:VirtualizedContainerService.HintSize="586,158" sap2010:WorkflowViewState.IdRef="NClick_13" InteractionMode="WindowMessages" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="db7d4772-0a8d-4d88-8015-cfc2e95e99e2" Version="V3">
+                      <uix:NClick.Target>
+                        <uix:TargetAnchorable CvElementArea="161, 97, 78, 26" CvTextArea="171, 104, 58, 15" CvTextArgument="Nie zapisuj" CvType="Button" DesignTimeRectangle="163, 98, 75, 24" DesignTimeScaleFactor="1" ElementType="Button" FriendlyName="'Nie zapisuj'" FullSelectorArgument="&lt;wnd aaname='Microsoft Word' cls='NetUIHWND' /&gt;&lt;ctrl name='Nie zapisuj' role='push button' /&gt;" FuzzySelectorArgument="&lt;wnd aaname='Microsoft Word' cls='NetUIHWND' /&gt;&lt;ctrl name='Nie zapisuj' role='push button' automationid='' check:text='Nie zapisuj' /&gt;" Guid="7b21a7a7-60cb-4f85-b1bf-b9ae8da08d84" InformativeScreenshot="9ed962ea82e21bc0ee53333867653133.png" ScopeSelectorArgument="&lt;wnd app='winword.exe' cls='NUIDialog' title='Microsoft Word' /&gt;" SearchSteps="Selector, FuzzySelector, CV" Version="V2" Visibility="Interactive" />
+                      </uix:NClick.Target>
+                    </uix:NClick>
+                  </Sequence>
+                </ActivityAction>
+              </uix:NApplicationCard.Body>
+              <uix:NApplicationCard.TargetApp>
+                <uix:TargetApp Area="-8, -8, 2576, 1408" Arguments="[in_PathToFakturaSample]" FilePath="[in_PathToWordFolder]" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHJSURBVFhH7ZcvSENRFMZfkyE+LIoaNOkQwSAzOIOoiFHUIGgxGFZkxTLQothEEISJUVBEWDIsLSwsiOADlQUFkQXDgiIiBsNx3+XecSf3+p6PM5DhDz7YPds55+Pcs3/OP36MHz97FVGd5Mk2dgxJrJJt7JiSOCXb2DElcUq2sWNK4pRsYye+XyQ/jabvjcWDyOlYzHkVURh1LZ1TfyItTJiKBxEMGIsHVed0iqLJHA2s34TS3zGg6FvJV4uXyh8iNpwsVGMKdWYzcPv4JgrPbV2J82TqQpxB8qBYEysUX/gNnOafRPGdzIM4H2ZL4gyyl2URgxGA51Qem4GNoztRXDVTEwGv758ipkypiUBsBjB6gHvHnQOYgCGwvHstRg9wFewGIAWuAWAq+tgVeo4bW6X22bOa2G9UY0AfO8Ak8K4AuAagLyDEakAtIoAZFdeN6QsIsRpQiwjw2BTXFxBiNaAWEeiLpn8m6HGI1UAYNYSB0F/HbTMnFOmdJ3dkk1rH9kJJ/uyw09Q9QVb1TFEkulBfA82DCfKTG982Fg8i2cZOy9Aa/SQ3ljIWDirZxo4piVOyjR1TEqdkGzuVF3nfkxjl/9eswXGcL2IzjE/x0LYjAAAAAElFTkSuQmCC" InformativeScreenshot="15aa62293c2b3bfca8fa48e85fc1a938.png" IsExactTitleEnabled="True" Selector="&lt;wnd app='winword.exe' cls='OpusApp' title='FakturaSample - Word' /&gt;" Title="FakturaSample - Word" />
+              </uix:NApplicationCard.TargetApp>
+            </uix:NApplicationCard>
+          </Sequence>
+        </ActivityAction>
+      </ui:ForEachRow.Body>
+    </ui:ForEachRow>
+  </Sequence>
+</Activity>
